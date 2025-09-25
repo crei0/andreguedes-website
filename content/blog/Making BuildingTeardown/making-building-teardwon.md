@@ -47,7 +47,7 @@ Inside it there's a container `Node3D`, just to keep things more organized and t
 
 Inside the container `Node3D`, it's where each block of the building lives. Each is a custom class `ModularBuildingBlock` (extending `RigidBody3D`). 
 
-When I setup a building, for each block/section I add a `ModularBuildingBlock` node, and inside it I place the `MeshBlock` (the 3D mesh).
+When I setup a building, for each block/section I add a `ModularBuildingBlock` node, and inside it I place the `MeshBlock` (the visible 3D mesh).
 
 And it ends up looking like this inside the editor
 
@@ -75,7 +75,7 @@ This detection of the the neighbours is done once after `ready()` phase of the N
 
 ##### Examples
 
-If for example, there's a neighbour in the `RayCast3D-X-Red-Depth` axis, then the `PinJoint3D-X-Red-Depth` node will have as `node_a` the `NodePath` of this `ModularBuildingBlock-1`, and as `node_b` the `NodePath` of the neighbour `ModularBuildingBlock-2`.
+If there's a neighbour in the `RayCast3D-X-Red-Depth` axis, then the `PinJoint3D-X-Red-Depth` node will have as `node_a` the `NodePath` of this `ModularBuildingBlock-1`, and as `node_b` the `NodePath` of the neighbour `ModularBuildingBlock-2` (for example).
 
 If for example, there's no neighbour in light blue/`width` axis is not detected by `RayCast3D-Z-Blue-Width`, then the `PinJoint3D-Z-Blue-Width` will **have** it's `node_a` and `node_b` as `null`/empty string.
 
@@ -108,9 +108,9 @@ The first line of 3 cubes, are just normal cubes used for the walls.
 
 The second line of meshes, are used for the roofs. The first and second from right to left are rotated to be used as 'slopes' (for that section that comes out of the building, below the clock).
 
-Even though these are non cube meshes, inside the physics simulation they still have cube shaped `CollisionShape3D`.
+Even though these are non-cube meshes, inside the physics simulation they still have cube shaped `CollisionShape3D`.
 
-The last 3 cubes are used on the clock, and rotate as needed.
+The last 3 cubes are used on the clock, and rotated as needed.
 
 
 ### Texture
