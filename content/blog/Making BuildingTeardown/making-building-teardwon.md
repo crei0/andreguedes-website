@@ -12,6 +12,7 @@ Discovering the [Creating fully destructible cities while maintaining 60FPS](htt
 ## Demo
 
 <iframe src="https://crei0.github.io/building-teardown/" style="width: 100%; min-height: 512px" />
+If the `Iframe` above is not working, use the [GitHub Pages link](https://crei0.github.io/building-teardown/)
 
 The entire project is available on [GitHub](https://github.com/crei0/building-teardown)
 
