@@ -9,12 +9,12 @@ After playing [X-Morph: Defense](https://store.steampowered.com/app/408410/XMorp
 
 Discovering the [Creating fully destructible cities while maintaining 60FPS](https://www.gamedeveloper.com/design/creating-fully-destructible-cities-while-maintaining-60fps), helped understanding how to build a system like this, so this is my **simplified** version of this system in Godot.
 
-## Demo
+## Web demo
 
-<iframe src="https://crei0.github.io/building-teardown/" style="width: 100%; min-height: 512px" />
-If the `Iframe` above is not working, use the [GitHub Pages link](https://crei0.github.io/building-teardown/)
+![Interactive web demo](interactive-demo.jpg)
+You can play with the interactive demo available at [GitHub Pages](https://crei0.github.io/building-teardown/)
 
-The entire project is available on [GitHub](https://github.com/crei0/building-teardown)
+The entire project and source code is available on [GitHub](https://github.com/crei0/building-teardown)
 
 ## Main node structure inside Godot
 
