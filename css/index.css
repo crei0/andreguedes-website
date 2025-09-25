@@ -1,27 +1,15 @@
-
-.noto-sans-400 {
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-}
-
-/* *//* */
+/* TODO: To remove below */
 
 /* Defaults */
 :root {
-	--font-family: -apple-system, system-ui, sans-serif;
-	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+	--font-family-monospace: Consolas, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
 }
 
-/* Theme colors */
+/* Theme colours */
 :root {
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #C0C0C0;
 	--color-gray-90: #333;
-
-	--background-color: #fff;
 
 	--text-color: var(--color-gray-90);
 	--text-color-link: #082840;
@@ -41,8 +29,6 @@
 		--text-color-link: #1493fb;
 		--text-color-link-active: #6969f7;
 		--text-color-link-visited: #a6a6f8;
-
-		--background-color: #15202b;
 	}
 }
 
@@ -62,7 +48,7 @@ body {
 	margin: 0 auto;
 	font-family: var(--font-family);
 	color: var(--text-color);
-	background-color: var(--background-color);
+	background-color: var(--colour-page-background);
 }
 html {
 	overflow-y: scroll;
@@ -133,13 +119,9 @@ main :first-child {
 	margin-top: 0;
 }
 
-header {
-	border-bottom: 1px dashed var(--color-gray-20);
-}
-
 #skip-link {
 	text-decoration: none;
-	background: var(--background-color);
+	background: var(--colour-page-background);
 	color: var(--text-color);
 	padding: 0.5rem 1rem;
 	border: 1px solid var(--color-gray-90);
@@ -203,14 +185,7 @@ code {
 }
 
 /* Header */
-header {
-	display: flex;
-	gap: 1em;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1em;
-}
+
 .home-link {
 	flex-grow: 1;
 	font-size: 1em; /* 16px /16 */
@@ -307,3 +282,52 @@ header {
 	margin-right: 1em;
 }
 
+
+/* TODO: To remove above */
+
+:root {
+	--font-family: "Noto Sans", sans-serif;
+	--font-family-monospaced: "Noto Sans Mono", monospace;
+	
+	--colour-page-background: #0f141a;
+	--colour-font: #eee;
+	--colour-border: #eee;
+
+	--dimension-spacing: 1em;
+}
+
+body {
+	background-color: var(--colour-page-background);
+	font-family: var(--font-family);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	font-variation-settings: "wdth" 100;
+}
+
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+	border-bottom: 1px solid var(--colour-border);
+}
+
+main {
+	
+}
+
+footer {
+	padding: var(--dimension-spacing);
+	border-top: 1px solid var(--colour-border);
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospaced);
+	background-color: #9b9b9b66;
+	padding: 0 1ex;
+	border-radius: 2px;
+}

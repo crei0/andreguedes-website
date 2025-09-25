@@ -2,6 +2,7 @@
 title: Making BuildingTeardown
 description: This is a post on My Blog about touchpoints and circling wagons.
 date: 2025-09-25
+dateLastModified: 2025-09-25
 tags: godot, 3d, physics, blender,
 ---
 
@@ -89,9 +90,9 @@ For the blocks that are damaged but survive an explosion, a `StandardMaterial3D`
 
 The node used for the explosions (`ExplosionUsingArea2d`) is an `Area3D`, and when the explosion is triggered in a world position, the `Area3D` detects the `ModularBuildingBlock` inside its `CollisionShape3D` and calls the `damage_from_explosion_position()` inside each block.
 
-Depending on the distance to the explosion center, the damage is calculated.
+The damage is calculated based on the distance to the explosion center.
 
-On the `UI` there's a slider to change the size of the explosions.
+On the `UI` there's a slider to change the size of the explosions (technically also changes the damage caused).
 
 The explosion particle VFX is done using 3 `GPUParticles3D`, one for the `debris`, one for the `fire` and the last one for the `smoke clouds`, all this is triggered using an `AnimationPlayer`.
 
@@ -104,14 +105,13 @@ I stack `1mx1mx1m` cubes in Blender to get the overall shape, after that I creat
 Below all the 3D meshes created for the `BigBen`
 ![Mesh blocks inside Blender](blender-big-ben-mesh-blocks.jpg)
 
-The first line of 3 cubes, are just normal cubes used for the walls.
+The first line of 3 cubes (from nearest to farthest), are just normal cubes used for the walls.
 
 The second line of meshes, are used for the roofs. The first and second from right to left are rotated to be used as 'slopes' (for that section that comes out of the building, below the clock).
 
 Even though these are non-cube meshes, inside the physics simulation they still have cube shaped `CollisionShape3D`.
 
 The last 3 cubes are used on the clock, and rotated as needed.
-
 
 ### Texture
 
