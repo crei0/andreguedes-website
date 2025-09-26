@@ -8,23 +8,38 @@ layout: layouts/base.njk
 
 <h1>{{ title }}</h1>
 
-<ul class="post-metadata">
-    <li>
+
+<div id="post-metadata">
+    <div>
+        <strong>Date</strong>
+    </div>
+    <div>
         <time datetime="{{ page.date | htmlDateString }}">
             {{ page.date | readableDate }}
         </time>
-    </li>
-    {%- for tag in tags | filterTagList %}
-        {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-        <li>
-            <a href="{{ tagUrl }}" class="post-tag">
-                {{ tag }}
-            </a>
-            {%- if not loop.last %},
-            {% endif %}
-        </li>
-    {%- endfor %}
-</ul>
+    </div>
+    
+    {% if eleventyComputed.dateLastModified %}
+    <div>
+        <strong>Date modified</strong>
+    </div>
+    <div>
+        <time datetime="{{ eleventyComputed.dateLastModified | htmlDateString }}">
+            {{ eleventyComputed.dateLastModified | readableDate }}
+        </time>
+    </div>
+    {% endif %}
+
+    <div>
+        <strong>Tags</strong>
+    </div>
+    <div id="post-metadata-tag">
+        {%- for tag in tags | filterTagList %}
+            {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+                <a href="{{ tagUrl }}" rel="tag">{{tag}}</a>
+        {%- endfor %}
+    </div>
+</div>
 
 {{ content | safe }}
 

@@ -1,50 +1,51 @@
 ---
-title: Making BuildingTeardown
-description: This is a post on My Blog about touchpoints and circling wagons.
+title: Making of 'BuildingTeardown'
+description: Post about how I built 'BuildingTeardown' in Godot
 date: 2025-09-25
-dateLastModified: 2025-09-25
-tags: godot, 3d, physics, blender,
+eleventyComputed:
+    dateLastModified: 2025-09-26
+tags: godot, 3d, physics, blender
 ---
-
 After playing [X-Morph: Defense](https://store.steampowered.com/app/408410/XMorph_Defense/), I was impressed by the mechanic of destroying parts of buildings, and the collapse of the different sections of the building.
 
 Discovering the [Creating fully destructible cities while maintaining 60FPS](https://www.gamedeveloper.com/design/creating-fully-destructible-cities-while-maintaining-60fps), helped understanding how to build a system like this, so this is my **simplified** version of this system in Godot.
 
 ## Web demo
 
-![Interactive web demo](interactive-demo.jpg)
+[![Interactive web demo](/img/2025-09-making-building-teardown/interactive-demo.jpg)](https://crei0.github.io/building-teardown/)
+
 You can play with the interactive demo available at [GitHub Pages](https://crei0.github.io/building-teardown/)
 
 The entire project and source code is available on [GitHub](https://github.com/crei0/building-teardown)
 
 ## Main node structure inside Godot
 
-![Main node structure inside Godot](sandbox-node-structure-inside-godot.jpg)
+![Main node structure inside Godot](/img/2025-09-making-building-teardown/sandbox-node-structure-inside-godot.jpg)
 
-### `PlayerCamera`
+**`PlayerCamera`**
 
 * Deals with player's input
 * Generating the explosions
 * Showing the user interface
 * Deals with `Camera3D` zooming and orbiting
 
-### `ExplosionsContainerNode3D`
+**`ExplosionsContainerNode3D`**
 
 * Where the explosions child nodes are instantiated
 
-### `ExplosionsContainerNode3D`
+**`ExplosionsContainerNode3D`**
 
 * Where the building scenes are instantiated
 
 ## Building hierarchy
 
-![Building blocks collection node structure](empire-state-building-node-collection-node-strucuture.jpg)
+![Building blocks collection node structure](/img/2025-09-making-building-teardown/empire-state-building-node-collection-node-strucuture.jpg)
 
 Each building scene, is a `Scene` with the custom class `BuildingBlocksCollection`, this class has nothing in it, so it could be easily removed.
 
 Inside it there's a container `Node3D`, just to keep things more organized and to be easier to change things in the future.
 
-### ModularBuildingBlock
+**ModularBuildingBlock**
 
 Inside the container `Node3D`, it's where each block of the building lives. Each is a custom class `ModularBuildingBlock` (extending `RigidBody3D`). 
 
@@ -52,19 +53,19 @@ When I setup a building, for each block/section I add a `ModularBuildingBlock` n
 
 And it ends up looking like this inside the editor
 
-![Empire state building inside Godot's editor with meshes](empire-state-building-inside-godot-editor-with-meshes.jpg)
+![Empire state building inside Godot's editor with meshes](/img/2025-09-making-building-teardown/empire-state-building-inside-godot-editor-with-meshes.jpg)
 
 
 And this is how it looks without the meshes
-![Empire state building inside Godot's editor without meshes](empire-state-building-inside-godot-editor-without-meshes.jpg)
+![Empire state building inside Godot's editor without meshes](/img/2025-09-making-building-teardown/empire-state-building-inside-godot-editor-without-meshes.jpg)
 
 #### How `ModularBuildingBlock` works
 
-![Modular building blocks node structure inside Godot](modular-building-block-node-structure.jpg)
+![Modular building blocks node structure inside Godot](/img/2025-09-making-building-teardown/modular-building-block-node-structure.jpg)
 
 The custom class uses a `RigidBody3D` and its `CollisionShape3D` to deal with the collisions. The collision shape used are always the 3d cube, even for roofs/slopes/other 3d mesh types.
 
-![Modular building block inside Godot's editor](modular-building-block-inside-godot-editor.jpg)
+![Modular building block inside Godot's editor](/img/2025-09-making-building-teardown/modular-building-block-inside-godot-editor.jpg)
 
 The cube on the image above is the cube shaped `CollisionShape3D`.
 
@@ -74,7 +75,7 @@ And if a neighbour is detected the corresponding `PinJoint3D` (in this scene) is
 
 This detection of the the neighbours is done once after `ready()` phase of the Node lifecycle
 
-##### Examples
+**Examples**
 
 If there's a neighbour in the `RayCast3D-X-Red-Depth` axis, then the `PinJoint3D-X-Red-Depth` node will have as `node_a` the `NodePath` of this `ModularBuildingBlock-1`, and as `node_b` the `NodePath` of the neighbour `ModularBuildingBlock-2` (for example).
 
@@ -86,7 +87,7 @@ Each `ModularBuildingBlock` has a `health` variable, if the health is `0` or low
 
 For the blocks that are damaged but survive an explosion, a `StandardMaterial3D` material exists on the `MeshBlock`, and its albedo color is changed from white (being completely transparent) to `red` if the block is heavily damaged.
 
-![Explosion's node structure inside Godot](explosion-node-structure-inside-godot.jpg)
+![Explosion's node structure inside Godot](/img/2025-09-making-building-teardown/explosion-node-structure-inside-godot.jpg)
 
 The node used for the explosions (`ExplosionUsingArea2d`) is an `Area3D`, and when the explosion is triggered in a world position, the `Area3D` detects the `ModularBuildingBlock` inside its `CollisionShape3D` and calls the `damage_from_explosion_position()` inside each block.
 
@@ -103,7 +104,7 @@ When I want to create a new building, I start first in Blender.
 I stack `1mx1mx1m` cubes in Blender to get the overall shape, after that I create individual meshes for each important 3D feature of the building.
 
 Below all the 3D meshes created for the `BigBen`
-![Mesh blocks inside Blender](blender-big-ben-mesh-blocks.jpg)
+![Mesh blocks inside Blender](/img/2025-09-making-building-teardown/blender-big-ben-mesh-blocks.jpg)
 
 The first line of 3 cubes (from nearest to farthest), are just normal cubes used for the walls.
 
@@ -113,6 +114,6 @@ Even though these are non-cube meshes, inside the physics simulation they still 
 
 The last 3 cubes are used on the clock, and rotated as needed.
 
-### Texture
+**Texture**
 
 The texture was created in Figma, created in way to be low resolution/pixel art.
