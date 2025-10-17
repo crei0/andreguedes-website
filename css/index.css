@@ -44,11 +44,8 @@
 
 html,
 body {
-	padding: 0;
-	margin: 0 auto;
 	font-family: var(--font-family);
 	color: var(--text-color);
-	background-color: var(--colour-page-background);
 }
 html {
 	overflow-y: scroll;
@@ -219,6 +216,8 @@ code {
 }
 
 body {
+	padding: var(--dimension-spacing);
+	margin: 0 auto;
 	background-color: var(--colour-page-background);
 	font-family: var(--font-family);
 	font-optical-sizing: auto;
@@ -368,7 +367,7 @@ footer {
 				&:active img {
 					opacity: 1;
 				}
-			} 
+			}
 		}
 	}
 }
