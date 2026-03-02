@@ -1,5 +1,5 @@
 ---
-title: Comparing web image formats in 2026
+title: (DRAFT) Comparing web image formats in 2026
 description: Post comparing different web image formats and their strengths and weaknesses
 date: 2026-02-27
 eleventyComputed:
@@ -13,9 +13,8 @@ permalink: false
 # TODO:
     - Get sample photos
     - Compare HDR?
-    - Compare HDR?
-    - 
     - make this post public (remove tags `eleventyExcludeFromCollections` and `permalink`)
+    - - Remove `(DRAFT)` from title
 
 # Which image formats to compare?
 
